@@ -26,12 +26,12 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [new HtmlWebpackPlugin({
-    title: 'GE Template ts',
+    title: 'Watch Exercise',
     template: path.join(process.cwd(), 'src/index.html'),
     filename: 'index.html',
   })],
   devServer: {
-    host: '0.0.0.0',
+    host: 'localhost',
     port: '1234',
   }
 };
