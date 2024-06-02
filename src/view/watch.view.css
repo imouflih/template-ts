@@ -1,0 +1,112 @@
+.watch-container {
+	position: relative;
+	width: 240px;
+	height: 240px;
+}
+
+#watch {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 200px;
+	height: 200px;
+	background-color: rgb(96, 34, 166);
+	border-radius: 50%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#time-display {
+	background-color: white;
+	padding: 10px 20px;
+	border-radius: 10px;
+	font-size: 24px;
+	user-select: none;
+	cursor: pointer;
+}
+
+#time-display:hover::after {
+	content: "Double click to change format";
+	position: absolute;
+	font-size: 12px;
+	color: white;
+	width: 200px;
+	top: 60px;
+	left: 30px;
+}
+
+.button {
+	position: absolute;
+	background-color: rgb(183, 153, 216);
+	border: none;
+	width: 30px;
+	height: 15px;
+	cursor: pointer;
+}
+
+.button:hover {
+	background-color: rgb(126, 96, 163);
+}
+
+.button:hover::after {
+	content: attr(data-text);
+	position: absolute;
+}
+
+.mode-button {
+	top: 16px;
+	right: 12px;
+	rotate: 45deg;
+}
+
+.increase-button {
+	bottom: 16px;
+	right: 12px;
+	rotate: -45deg;
+}
+
+.light-button {
+	bottom: 16px;
+	left: 12px;
+	rotate: 45deg;
+}
+
+.reset-button {
+	top: 16px;
+	left: 12px;
+	rotate: -45deg;
+}
+
+.mode-button::after,
+.reset-button::after {
+	top: -15px;
+	left: 0px;
+}
+
+.increase-button::after,
+.light-button::after {
+	bottom: -15px;
+	left: 0px;
+}
+
+.light-on {
+	background-color: #ffd078 !important;
+}
+
+@keyframes blinkAnimation {
+	0%,
+	50%,
+	100% {
+		opacity: 1;
+	}
+	25%,
+	75% {
+		opacity: 0;
+	}
+}
+
+.blink {
+	animation: blinkAnimation 3s infinite;
+}
