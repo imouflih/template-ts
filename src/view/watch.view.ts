@@ -27,7 +27,10 @@ class WatchView {
     private lightButton: HTMLElement;
     private resetButton: HTMLElement;
 
-    constructor(private model: WatchModel, private specifier: WatchViewSpecifier) { }
+    constructor(
+        private model: WatchModel,
+        private specifier: WatchViewSpecifier
+    ) { }
 
     createElements(container: HTMLElement) {
         this.mainElement = document.createElement("div");
@@ -47,23 +50,37 @@ class WatchView {
         this.model.subscribe(this.renderLight.bind(this));
 
         this.modeButton.addEventListener("click", this.handleModeClick.bind(this));
-        this.increaseButton.addEventListener("click", this.handleIncreaseClick.bind(this));
-        this.lightButton.addEventListener("click", this.handleLightClick.bind(this));
-        this.resetButton.addEventListener("click", this.handleResetClick.bind(this));
-        this.timeDisplay.addEventListener("dblclick", this.handleHour12Change.bind(this));
+        this.increaseButton.addEventListener(
+            "click",
+            this.handleIncreaseClick.bind(this)
+        );
+        this.lightButton.addEventListener(
+            "click",
+            this.handleLightClick.bind(this)
+        );
+        this.resetButton.addEventListener(
+            "click",
+            this.handleResetClick.bind(this)
+        );
+        this.timeDisplay.addEventListener(
+            "dblclick",
+            this.handleHour12Change.bind(this)
+        );
     }
 
     private renderTime() {
         const time = this.model.currentTime;
-        let hours = String((time.getHours() + this.model.timeZone + 24) % 24).padStart(2, "0");
+        let hours = String(
+            (time.getHours() + this.model.timeZone + 24) % 24
+        ).padStart(2, "0");
         const minutes = String(time.getMinutes()).padStart(2, "0");
         const seconds = String(time.getSeconds()).padStart(2, "0");
 
         let amPm = "";
 
         if (this.model.hour12) {
-            hours = String(Number(hours) % 12).padStart(2, "0");
-            amPm = time.getHours() >= 12 ? "PM" : "AM";
+            amPm = +hours >= 12 ? "PM" : "AM";
+            hours = String(+hours === 12 ? 12 : +hours % 12).padStart(2, "0");
         }
 
         if (this.model.mode === "edit-hour") {
