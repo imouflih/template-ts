@@ -1,19 +1,12 @@
 import './index.css';
 import HeaderView from './view/header.view';
-import WatchWrapper from './watch.wrapper';
+import AnimatorWrapper from './wrappers/animator.wrapper';
+import WatchWrapper from './wrappers/watch.wrapper';
 
 document.addEventListener('DOMContentLoaded', () => {
     const watchContainer = document.getElementById('container');
     const addWatchContainer = document.getElementById('add-watch-container');
 
-    const addWatchController = (timeZoneValue: number = 0) => {
-        new WatchWrapper(watchContainer, timeZoneValue).init();
-    };
-
-    const header = new HeaderView({
-        addWatchEvent: [addWatchController]
-    })
-
-    header.createElements(addWatchContainer);
-    header.initListeners();
+    new WatchWrapper(watchContainer, 2).init();
+    new AnimatorWrapper(watchContainer).init();
 });

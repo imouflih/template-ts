@@ -1,6 +1,6 @@
-import WatchController from "./controller/watch.controller";
-import WatchModel from "./model/watch.model";
-import WatchView from "./view/watch.view";
+import WatchController from "../controller/watch.controller";
+import WatchModel from "../model/watch.model";
+import WatchView from "../view/watch.view";
 
 class WatchWrapper {
     private model: WatchModel;
