@@ -12,11 +12,11 @@ const WATCH_TEMPLATE = `
 `;
 
 export interface WatchViewSpecifier {
-    changeModeEvent: Observer;
-    increaseTimeEvent: Observer;
-    toggleLightEvent: Observer;
-    resetTimeEvent: Observer;
-    changeHour12Event: Observer;
+    changeModeEvent: Observer[];
+    increaseTimeEvent: Observer[];
+    toggleLightEvent: Observer[];
+    resetTimeEvent: Observer[];
+    changeHour12Event: Observer[];
 }
 
 class WatchView {
@@ -46,29 +46,29 @@ class WatchView {
     }
 
     initListeners() {
-        this.model.subscribe(this.renderTime.bind(this));
-        this.model.subscribe(this.renderLight.bind(this));
+        this.model.subscribe(this.renderTime);
+        this.model.subscribe(this.renderLight);
 
-        this.modeButton.addEventListener("click", this.handleModeClick.bind(this));
+        this.modeButton.addEventListener("click", this.handleModeClick);
         this.increaseButton.addEventListener(
             "click",
-            this.handleIncreaseClick.bind(this)
+            this.handleIncreaseClick
         );
         this.lightButton.addEventListener(
             "click",
-            this.handleLightClick.bind(this)
+            this.handleLightClick
         );
         this.resetButton.addEventListener(
             "click",
-            this.handleResetClick.bind(this)
+            this.handleResetClick
         );
         this.timeDisplay.addEventListener(
             "dblclick",
-            this.handleHour12Change.bind(this)
+            this.handleHour12Change
         );
     }
 
-    private renderTime() {
+    private renderTime = () => {
         const time = this.model.currentTime;
         let hours = String(
             (time.getHours() + this.model.timeZone + 24) % 24
@@ -92,7 +92,7 @@ class WatchView {
         }
     }
 
-    private renderLight() {
+    private renderLight = () => {
         if (this.model.lightOn) {
             this.timeDisplay.classList.add("light-on");
         } else {
@@ -100,24 +100,24 @@ class WatchView {
         }
     }
 
-    private handleModeClick() {
-        this.specifier.changeModeEvent();
+    private handleModeClick = () => {
+        this.specifier.changeModeEvent.forEach(event => event());
     }
 
-    private handleIncreaseClick() {
-        this.specifier.increaseTimeEvent();
+    private handleIncreaseClick = () => {
+        this.specifier.increaseTimeEvent.forEach(event => event());
     }
 
-    private handleLightClick() {
-        this.specifier.toggleLightEvent();
+    private handleLightClick = () => {
+        this.specifier.toggleLightEvent.forEach(event => event());
     }
 
-    private handleResetClick() {
-        this.specifier.resetTimeEvent();
+    private handleResetClick = () => {
+        this.specifier.resetTimeEvent.forEach(event => event());
     }
 
-    private handleHour12Change(e: Event) {
-        this.specifier.changeHour12Event((e.target as HTMLSelectElement).value);
+    private handleHour12Change = () => {
+        this.specifier.changeHour12Event.forEach(event => event());
     }
 }
 

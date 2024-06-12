@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let timeZone = 0;
 
-    for (let i = -12; i <= 12; i++) {
+    for (let i = -11; i <= 12; i++) {
         const option = document.createElement('option');
         option.value = i.toString();
         option.textContent = `GMT ${i >= 0 ? '+' : ''}${i}`;

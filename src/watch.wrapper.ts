@@ -11,11 +11,11 @@ class WatchWrapper {
         this.model = new WatchModel();
         this.controller = new WatchController(this.model);
         this.view = new WatchView(this.model, {
-            changeModeEvent: this.controller.changeMode,
-            increaseTimeEvent: this.controller.increaseTime,
-            toggleLightEvent: this.controller.toggleLight,
-            resetTimeEvent: this.controller.resetTime,
-            changeHour12Event: this.controller.changeHour12,
+            changeModeEvent: [this.controller.changeMode],
+            increaseTimeEvent: [this.controller.increaseTime],
+            toggleLightEvent: [this.controller.toggleLight],
+            resetTimeEvent: [this.controller.resetTime],
+            changeHour12Event: [this.controller.changeHour12],
         });
     }
 
