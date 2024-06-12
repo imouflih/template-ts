@@ -7,7 +7,7 @@ body {
 	height: 100%;
 }
 
-.add-watch-container {
+#add-watch-container {
 	position: fixed;
 	top: 0;
 	z-index: 10;
